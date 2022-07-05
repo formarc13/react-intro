@@ -1,0 +1,21 @@
+.btn {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+}
+
+.danger {
+    background-color: red;
+    color: white;
+}
+.primary {
+    background-color: blue;
+    color: white;
+}
+.success {
+    background-color: green;
+    color: white;
+}
