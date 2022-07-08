@@ -1,14 +1,17 @@
+import React, { useState } from "react";
 import './App.css';
 import Children from './Children';
+import image from "../assets/images/imagen.jpg"
 
 /* Components */
 import ClassComponent from "./ClassComponent";
 import ListMap from './ListMap';
 import Props from "./Props";
 import CssStyles from './Styling/CssStyles';
+import Contador from './Contador/Contador';
 
 function App({nombre, n1, n2}) {
-
+  const [ mostrar, setMostrar ] = useState(false);
   /* let nombre = "Mati"; */
   /* let cadena = "Soy un string"; */
   let objeto = {
@@ -29,6 +32,15 @@ function App({nombre, n1, n2}) {
 
   return (
     <div className="App">
+      <button onClick={() => setMostrar(true)}>Mostrar contador</button>
+      <button onClick={() => setMostrar(false)}>Quitar contador</button>
+      <hr/>
+      {
+        mostrar && <Contador />
+      }
+     {/*  <h2>Imagenes</h2>
+      <img src={image} alt="Imagen de naruto"/> */}
+      <hr/>
       <CssStyles type="" text="Cancelar" variant="danger"/>
       <hr/>
       <Children>
