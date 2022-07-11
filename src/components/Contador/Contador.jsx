@@ -28,10 +28,23 @@ class Contador extends Component {
         }
     }
 
-    /* CICLO DE VIDA */
+    /* CICLO DE VIDA DEL COMPONENTE */
     /* Montaje */
     componentDidMount () {
         console.log("El componente contador está montado")
+    }
+
+    /* Actualización */
+    componentDidUpdate() {
+        console.log("El componente se actualizó")
+        if(this.state.contador === 5) {
+            alert("Llegaste a 5!!!")
+        }
+    }
+
+    /* Desmontaje */
+    componentWillUnmount() {
+        console.log("El componente se desmontó")
     }
     
     render () {

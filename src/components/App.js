@@ -9,6 +9,7 @@ import ListMap from './ListMap';
 import Props from "./Props";
 import CssStyles from './Styling/CssStyles';
 import Contador from './Contador/Contador';
+import Carrito from "./Carrito/Carrito";
 
 function App({nombre, n1, n2}) {
   const [ mostrar, setMostrar ] = useState(false);
@@ -32,6 +33,9 @@ function App({nombre, n1, n2}) {
 
   return (
     <div className="App">
+      <Carrito />
+      <hr/>
+
       <button onClick={() => setMostrar(true)}>Mostrar contador</button>
       <button onClick={() => setMostrar(false)}>Quitar contador</button>
       <hr/>
