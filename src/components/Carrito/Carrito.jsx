@@ -30,6 +30,19 @@ class Carrito extends Component {
         })
         .catch(error => console.log(error))
     }
+    
+    
+    incrementar (id) {
+        let productosModificados = this.state.productos.map(prod => {
+            if(prod.id === id){
+                prod.cantidad = prod.cantidad + 1;
+            }
+            return prod;
+        });
+        this.setState({
+            productos: productosModificados,
+        })
+    }
 
     decrementar (id) {
         let productosModificados = this.state.productos.map(prod => {
@@ -74,15 +87,16 @@ class Carrito extends Component {
         })
     }
 
-    incrementar (id) {
-        let productosModificados = this.state.productos.map(prod => {
-            if(prod.id === id){
-                prod.cantidad = prod.cantidad + 1;
-            }
-            return prod;
-        });
+    quitarDelCarrito (id) {
+        let carritoModificado = this.state.carrito.filter((prod) => prod.id !== id);
         this.setState({
-            productos: productosModificados,
+            carrito: carritoModificado
+        })
+    }
+
+    vaciarCarrito () {
+        this.setState({
+            carrito: []
         })
     }
 
@@ -111,11 +125,11 @@ class Carrito extends Component {
                 </ul>
                 <section>
                     <h2>Agregados al carrito</h2>
-                    <button>VACIAR CARRITO</button>
+                    <button onClick={() => this.vaciarCarrito()}>VACIAR CARRITO</button>
                     <ul>
                         {
                             this.state.carrito.map(prod => (
-                                <li>{prod.name} x {prod.cantidadEnCarrito}</li>
+                                <li>{prod.name} x {prod.cantidadEnCarrito} <button onClick={() => this.quitarDelCarrito(prod.id)}>Quitar del carrito</button></li>
                             ))
                         }
                     </ul>
