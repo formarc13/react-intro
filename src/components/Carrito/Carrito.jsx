@@ -45,8 +45,35 @@ class Carrito extends Component {
 
     
     agregarAlCarrito (id) {
+        let productoEnCarrito = this.state.carrito.find(prod => prod.id === id);
+        let producto = this.state.productos.find(prod => prod.id === id);
         
+        if(productoEnCarrito === undefined){
+            producto = {
+                ...producto,
+                cantidadEnCarrito: producto.cantidad
+            }
+            this.setState({
+                carrito: [...this.state.carrito, producto]
+            })
+        }else{
+            productoEnCarrito.cantidadEnCarrito = productoEnCarrito.cantidadEnCarrito + producto.cantidad
+            this.setState({
+                carrito: [...this.state.carrito]
+            })
+        }
+
+        let productosModificados = this.state.productos.map(prod => {
+            if(prod.id === id){
+                prod.cantidad = 0;
+            }
+            return prod;
+        });
+        this.setState({
+            productos: productosModificados,
+        })
     }
+
     incrementar (id) {
         let productosModificados = this.state.productos.map(prod => {
             if(prod.id === id){
@@ -86,7 +113,11 @@ class Carrito extends Component {
                     <h2>Agregados al carrito</h2>
                     <button>VACIAR CARRITO</button>
                     <ul>
-                        <li>ITEM X cantidad</li>
+                        {
+                            this.state.carrito.map(prod => (
+                                <li>{prod.name} x {prod.cantidadEnCarrito}</li>
+                            ))
+                        }
                     </ul>
                 </section>
             </div>
